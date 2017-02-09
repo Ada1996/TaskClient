@@ -68,7 +68,6 @@ public class TaskTable extends AbstractTableModel{
                     x.getDate(),
                     x.getContacts(),
             };
-            System.out.println("таблица: "+ x.getName());
             addData(row);
         }
     }

@@ -29,38 +29,6 @@ public class MyTimerTask extends TimerTask {
     private JTable textTable;
 
 
-//РАБОТА С ТАБЛИЦЕЙ
-    public void buildTable() {
-        textTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-        TableColumn column = null;
-        int prefWidth = 0;
-        JTableHeader th = textTable.getTableHeader();
-        for (int i = 0; i < textTable.getColumnCount(); i++) {
-            column = textTable.getColumnModel().getColumn(i);
-            int prefWidthMax = 0;
-            for (int j = 0; j < textTable.getRowCount(); j++) {
-                String s = textTable.getModel().getValueAt(j, i).toString();
-                prefWidth =
-                        Math.round(
-                                (float) th.getFontMetrics(
-                                        th.getFont()).getStringBounds(s,
-                                        th.getGraphics()
-                                ).getWidth()
-                        );
-                if (prefWidth > prefWidthMax) prefWidthMax = prefWidth;
-            }
-            column.setPreferredWidth(prefWidthMax + 68);
-        }
-    }
-
-    //ВЫВОД ВСЕХ ЗАДАЧ НА ЭКРАН
-    public void outputTasks(List<Task> journ) throws IOException, ClassNotFoundException {
-        tTable.deleteTasks();
-        tTable.addTasks(journ);
-        System.out.println("получ: "+ journ.get(0).getName());
-        textTable.updateUI();      
-    }
-
     @Override
     public void run() {
         boolean check = false;
@@ -77,9 +45,8 @@ public class MyTimerTask extends TimerTask {
                 out = new DataOutputStream(connection.getOutputStream());
                 input = new ObjectInputStream(connection.getInputStream());
 
-                out.writeUTF("22");
-                tasks = (List<Task>)input.readObject();
-                System.out.println("получили: "+ tasks.get(0).getName());
+                out.writeUTF("44");
+                tasks = (List<Task>)input.readObject();              
                     
                 if (!check){
                     System.out.println("hello ");
@@ -97,16 +64,12 @@ public class MyTimerTask extends TimerTask {
         }
         check=true;
                 }
-                 
-//        tTable = new TaskTable();
-//        textTable = new JTable(tTable);     
-//        outputTasks(tasks);
-//        buildTable();
-        
+                       
                 for (Task x : tasks) {
                     if (x.getDate().equals(formattedDate)) {
                         Toolkit.getDefaultToolkit().beep();
                         JOptionPane.showMessageDialog(null, "Название: " + x.getName(), "Вам сообщение!", JOptionPane.INFORMATION_MESSAGE);
+                        System.out.println("дата "+ x.getDate());
                     }
                 }
             } catch (UnknownHostException e) {
