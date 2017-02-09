@@ -1,5 +1,6 @@
 package com.company;
 
+import static com.company.MyTimerTask.tasks;
 import javax.swing.*;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
@@ -39,6 +40,7 @@ public class ClientForm extends JFrame {
             int prefWidthMax = 0;
             for (int j = 0; j < textTable.getRowCount(); j++) {
                 String s = textTable.getModel().getValueAt(j, i).toString();
+                System.out.println(textTable.getModel().getValueAt(j, i).toString());
                 prefWidth =
                         Math.round(
                                 (float) th.getFontMetrics(
@@ -53,10 +55,12 @@ public class ClientForm extends JFrame {
     }
 
     //ВЫВОД ВСЕХ ЗАДАЧ НА ЭКРАН
-    public void outputTasks(String pathCatalog) throws IOException, ClassNotFoundException {
+    public void outputTasks(List<Task> tasks) throws IOException, ClassNotFoundException {
 
         tTable.deleteTasks();
-        tTable.addTasks(MyTimerTask.tasks);
+        tTable.addTasks(tasks);
+        System.out.println("получ: "+ tasks.get(0).getName());
+    
         textTable.updateUI();
 
     }
@@ -67,10 +71,15 @@ public class ClientForm extends JFrame {
 
 
         //ВНЕШНИЙ ВИД
+        tTable = new TaskTable();
+        textTable = new JTable(tTable);
+        outputTasks(MyTimerTask.tasks);
         setLayout(new BorderLayout());
+                
         scroll = new JScrollPane(textTable);
-        scroll.setPreferredSize(new Dimension(650, 400));
-        add(scroll, BorderLayout.WEST);
+        scroll.setPreferredSize(new Dimension(590, 400));
+        add(scroll, BorderLayout.WEST);              
+        buildTable();
     }
 }
 
