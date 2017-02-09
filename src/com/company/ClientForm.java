@@ -1,6 +1,7 @@
 package com.company;
 
 import static com.company.MyTimerTask.tasks;
+
 import javax.swing.*;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
@@ -59,13 +60,14 @@ public class ClientForm extends JFrame {
 
         tTable.deleteTasks();
         tTable.addTasks(tasks);
-        System.out.println("получ: "+ tasks.get(0).getName());
-    
+        System.out.println("получ: " + tasks.get(0).getName());
+
         textTable.updateUI();
 
     }
 
 
+    //КОНСТРУКТОР
     public ClientForm(String s) throws IOException, ClassNotFoundException {
         super(s);
 
@@ -75,11 +77,31 @@ public class ClientForm extends JFrame {
         textTable = new JTable(tTable);
         outputTasks(MyTimerTask.tasks);
         setLayout(new BorderLayout());
-                
+
         scroll = new JScrollPane(textTable);
-        scroll.setPreferredSize(new Dimension(590, 400));
-        add(scroll, BorderLayout.WEST);              
+        scroll.setPreferredSize(new Dimension(650, 400));
+        add(scroll, BorderLayout.WEST);
         buildTable();
+
+
+
+        //СМЕНИТЬ ПОЛЬЗОВАТЕЛЯ
+        JMenuBar menuBar = new JMenuBar();
+        menuBar.setBackground(Color.lightGray);
+        JButton changeClient = new JButton("Сменить пользователя");
+        menuBar.add(changeClient);
+        setJMenuBar(menuBar);
+        changeClient.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                AutorizeForm autorizeForm = new AutorizeForm();
+                autorizeForm.setVisible(true);
+                autorizeForm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                autorizeForm.setSize(330, 100);
+                autorizeForm.setLocationRelativeTo(null);
+                dispose();
+            }
+        });
     }
 }
 
