@@ -5,16 +5,14 @@ import java.io.IOException;
 
 public class Main {
 
+    public static String clientName = "";
+
     public static void main(String[] args) throws IOException, ClassNotFoundException {
-        
 
-        java.util.Timer mTimer;
-        MyTimerTask mMyTimerTask;
-
-        mTimer = new java.util.Timer();
-        mMyTimerTask = new MyTimerTask();
-        // start MyTimerTask thread
-        mTimer.schedule(mMyTimerTask, 0);
-
+        AutorizeForm autorizeForm = new AutorizeForm();
+        autorizeForm.setVisible(true);
+        autorizeForm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        autorizeForm.setSize(330, 100);
+        autorizeForm.setLocationRelativeTo(null);
     }
 }
