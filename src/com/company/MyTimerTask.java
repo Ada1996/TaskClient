@@ -37,19 +37,22 @@ public class MyTimerTask extends TimerTask {
                 //ПОДКЛЮЧЕНИЕ К СЕРВЕРУ, ПОЛУЧЕНИЕ СПИСКА ЗАДАЧ
                 connection = new Socket(InetAddress.getByName("127.0.0.1"), 180);
                 out = new DataOutputStream(connection.getOutputStream());
-                input = new ObjectInputStream(connection.getInputStream());
+                input = new ObjectInputStream(connection.getInputStream());             
 
                 out.writeUTF(Main.clientName);
+               
                 tasks = (List<Task>) input.readObject();
-
-                //boolean b = tasks.isEmpty();
-                boolean b = (boolean) input.readObject();
-                System.out.println("задание " + tasks.get(0).getName());
+                boolean b = tasks.isEmpty();
+               // boolean b = (boolean) inp.readBoolean();
+                 System.out.println("задание " + b);
+                 //
+                //System.out.println("задание " + tasks.get(0).getName());
+                ClientForm form = null;
                 if (b == false) {
 
 
                     //ВЫЗОВ ФОРМЫ КЛИЕНТА
-                    ClientForm form;
+                    
                     try {
                         form = new ClientForm("Task Manager");
                         form.setVisible(true);
@@ -74,7 +77,7 @@ public class MyTimerTask extends TimerTask {
                     }
                 } else {
                     System.out.println("Данного пользователя не существует");
-
+                    Thread.interrupted();                  
                     //JOptionPane.showMessageDialog(null, "Данного пользователя не существует", "Ошибка", JOptionPane.ERROR_MESSAGE);
                 }
 
