@@ -40,8 +40,7 @@ public class ClientForm extends JFrame {
             column = textTable.getColumnModel().getColumn(i);
             int prefWidthMax = 0;
             for (int j = 0; j < textTable.getRowCount(); j++) {
-                String s = textTable.getModel().getValueAt(j, i).toString();
-                System.out.println("buildTable"+textTable.getModel().getValueAt(j, i).toString());
+                String s = textTable.getModel().getValueAt(j, i).toString();               
                 prefWidth =
                         Math.round(
                                 (float) th.getFontMetrics(
@@ -57,13 +56,9 @@ public class ClientForm extends JFrame {
 
     //ВЫВОД ВСЕХ ЗАДАЧ НА ЭКРАН
     public void outputTasks(List<Task> tasks) throws IOException, ClassNotFoundException {
-
         tTable.deleteTasks();
         tTable.addTasks(tasks);
-        System.out.println("клиент форм аутпут: " + tasks.get(0).getName());
-
         textTable.updateUI();
-
     }
 
 
