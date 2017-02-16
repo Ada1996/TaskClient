@@ -35,24 +35,11 @@ public class MyTimerTask extends TimerTask {
                 SimpleDateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm");
                 String formattedDate = df.format(calendar.getTime());
 
-                //ПОДКЛЮЧЕНИЕ К СЕРВЕРУ
+                //ПОДКЛЮЧЕНИЕ К СЕРВЕРУ, ПОЛУЧЕНИЕ СПИСКА ЗАДАЧ
                 connection = new Socket(InetAddress.getByName("127.0.0.1"), 180);
                 out = new DataOutputStream(connection.getOutputStream());
                 input = new ObjectInputStream(connection.getInputStream());
 
-<<<<<<< HEAD
-                out.writeUTF("44");
-                tasks = (List<Task>)input.readObject();              
-                    
-                if (!check){
-                    ClientForm form;
-                    try {
-                        form = new ClientForm("Task Manager");
-                         form.setVisible(true);
-                    form.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                    form.setSize(650, 400);
-                    form.setLocationRelativeTo(null);
-=======
                 out.writeUTF(Main.clientName);
                 tasks = (List<Task>) input.readObject();
 
@@ -66,27 +53,19 @@ public class MyTimerTask extends TimerTask {
                         form.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                         form.setSize(650, 400);
                         form.setLocationRelativeTo(null);
->>>>>>> origin/master
                     } catch (IOException ex) {
                         Logger.getLogger(MyTimerTask.class.getName()).log(Level.SEVERE, null, ex);
                     } catch (ClassNotFoundException ex) {
                         Logger.getLogger(MyTimerTask.class.getName()).log(Level.SEVERE, null, ex);
                     }
-<<<<<<< HEAD
-                    check=true;
-=======
                     check = true;
->>>>>>> origin/master
                 }
                 //ПОИСК ЗАДАНИЯ НА ТЕКУЩЕЕ ВРЕМЯ
                 for (Task x : tasks) {
                     if (x.getDate().equals(formattedDate)) {
                         Toolkit.getDefaultToolkit().beep();
                         JOptionPane.showMessageDialog(null, "Название: " + x.getName(), "Вам сообщение!", JOptionPane.INFORMATION_MESSAGE);
-<<<<<<< HEAD
-=======
                         System.out.println("дата " + x.getDate());
->>>>>>> origin/master
                     }
                 }
             } catch (UnknownHostException e) {
