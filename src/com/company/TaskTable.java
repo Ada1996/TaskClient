@@ -46,7 +46,7 @@ public class TaskTable extends AbstractTableModel{
    @Override
     public String getColumnName(int columnIndex){
         switch(columnIndex){
-            case 0: return "Клиент";
+            case 0: return "Пользователь";
             case 1: return "Название";
             case 2: return "Описание";
             case 3: return "Дата";

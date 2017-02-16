@@ -41,9 +41,14 @@ public class MyTimerTask extends TimerTask {
 
                 out.writeUTF(Main.clientName);
                 tasks = (List<Task>) input.readObject();
-                 System.out.println("задание " + tasks.get(0).getName());
 
-                //ВЫЗОВ ФОРМЫ КЛИЕНТА
+                //boolean b = tasks.isEmpty();
+                boolean b = (boolean) input.readObject();
+                System.out.println("задание " + tasks.get(0).getName());
+                if (b == false) {
+
+
+                    //ВЫЗОВ ФОРМЫ КЛИЕНТА
                     ClientForm form;
                     try {
                         form = new ClientForm("Task Manager");
@@ -51,24 +56,28 @@ public class MyTimerTask extends TimerTask {
                         form.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                         form.setSize(650, 400);
                         form.setLocationRelativeTo(null);
-                        
-                       //ПОИСК ЗАДАНИЯ НА ТЕКУЩЕЕ ВРЕМЯ
+
+                        //ПОИСК ЗАДАНИЯ НА ТЕКУЩЕЕ ВРЕМЯ
                         for (Task x : tasks) {
                             if (x.getDate().equals(formattedDate)) {
                                 Toolkit.getDefaultToolkit().beep();
                                 JOptionPane.showMessageDialog(null, "Название: " + x.getName(), "Вам сообщение!", JOptionPane.INFORMATION_MESSAGE);
                                 System.out.println("дата " + x.getDate());
                             }
-                        } 
-                        Thread.sleep(60000); 
+                        }
+                        Thread.sleep(60000);
                         form.dispose();
-                    }
-                    catch (IOException ex) {
+                    } catch (IOException ex) {
                         Logger.getLogger(MyTimerTask.class.getName()).log(Level.SEVERE, null, ex);
                     } catch (ClassNotFoundException ex) {
                         Logger.getLogger(MyTimerTask.class.getName()).log(Level.SEVERE, null, ex);
-                    }                                  
-                
+                    }
+                } else {
+                    System.out.println("Данного пользователя не существует");
+
+                    //JOptionPane.showMessageDialog(null, "Данного пользователя не существует", "Ошибка", JOptionPane.ERROR_MESSAGE);
+                }
+
             } catch (UnknownHostException e) {
             } catch (Exception e) {
             }
