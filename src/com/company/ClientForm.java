@@ -40,7 +40,6 @@ public class ClientForm extends JFrame {
             int prefWidthMax = 0;
             for (int j = 0; j < textTable.getRowCount(); j++) {
                 String s = textTable.getModel().getValueAt(j, i).toString();
-                System.out.println(textTable.getModel().getValueAt(j, i).toString());
                 prefWidth =
                         Math.round(
                                 (float) th.getFontMetrics(
@@ -58,9 +57,7 @@ public class ClientForm extends JFrame {
     public void outputTasks(List<Task> tasks) throws IOException, ClassNotFoundException {
 
         tTable.deleteTasks();
-        tTable.addTasks(tasks);
-        System.out.println("получ: "+ tasks.get(0).getName());
-    
+        tTable.addTasks(tasks); 
         textTable.updateUI();
 
     }

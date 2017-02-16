@@ -25,8 +25,6 @@ public class MyTimerTask extends TimerTask {
     static private ObjectInputStream input;
     static public List<Task> tasks;
     static private DataOutputStream out;
-    private TaskTable tTable;
-    private JTable textTable;
 
 
     @Override
@@ -49,27 +47,25 @@ public class MyTimerTask extends TimerTask {
                 tasks = (List<Task>)input.readObject();              
                     
                 if (!check){
-                    System.out.println("hello ");
                     ClientForm form;
-        try {
-            form = new ClientForm("Task Manager");
-             form.setVisible(true);
-        form.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        form.setSize(650, 400);
-        form.setLocationRelativeTo(null);
-        } catch (IOException ex) {
-            Logger.getLogger(MyTimerTask.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(MyTimerTask.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        check=true;
+                    try {
+                        form = new ClientForm("Task Manager");
+                         form.setVisible(true);
+                    form.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                    form.setSize(650, 400);
+                    form.setLocationRelativeTo(null);
+                    } catch (IOException ex) {
+                        Logger.getLogger(MyTimerTask.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (ClassNotFoundException ex) {
+                        Logger.getLogger(MyTimerTask.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    check=true;
                 }
                        
                 for (Task x : tasks) {
                     if (x.getDate().equals(formattedDate)) {
                         Toolkit.getDefaultToolkit().beep();
                         JOptionPane.showMessageDialog(null, "Название: " + x.getName(), "Вам сообщение!", JOptionPane.INFORMATION_MESSAGE);
-                        System.out.println("дата "+ x.getDate());
                     }
                 }
             } catch (UnknownHostException e) {
