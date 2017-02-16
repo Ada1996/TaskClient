@@ -43,9 +43,9 @@ public class MyTimerTask extends TimerTask {
                 tasks = (List<Task>) input.readObject();
 
                 //boolean b = tasks.isEmpty();
-                boolean b = (boolean) input.readObject();
+                //boolean b = (boolean) input.readObject();
                 System.out.println("задание " + tasks.get(0).getName());
-                if (b == false) {
+                if (true) {
 
 
                     //ВЫЗОВ ФОРМЫ КЛИЕНТА
@@ -61,8 +61,14 @@ public class MyTimerTask extends TimerTask {
                         for (Task x : tasks) {
                             if (x.getDate().equals(formattedDate)) {
                                 Toolkit.getDefaultToolkit().beep();
-                                JOptionPane.showMessageDialog(null, "Название: " + x.getName(), "Вам сообщение!", JOptionPane.INFORMATION_MESSAGE);
-                                System.out.println("дата " + x.getDate());
+                                //JOptionPane.showMessageDialog(null, "Название: " + x.getName(), "Вам сообщение!", JOptionPane.INFORMATION_MESSAGE);
+                                MessageForm form1 = new MessageForm(x);
+                                form1.setVisible(true);
+                                form1.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                                form1.setSize(320, 287);
+                                form1.setLocationRelativeTo(null);
+
+                                //System.out.println("дата " + x.getDate());
                             }
                         }
                         Thread.sleep(60000);
