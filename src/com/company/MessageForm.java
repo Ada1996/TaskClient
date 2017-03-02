@@ -13,7 +13,8 @@ public class MessageForm extends JFrame {
 
         //ИМЯ ЗАДАНИЯ
         JLabel lname = new JLabel("Имя задания:");
-        JLabel name = new JLabel(x.getName());
+        JTextArea name = new JTextArea(x.getName());
+        name.setEditable(false);
         add(lname);
         add(name);
         lname.setBounds(0, 25, 100, 20);
@@ -21,7 +22,10 @@ public class MessageForm extends JFrame {
 
         //ОПИСАНИЕ
         JLabel ldescription = new JLabel("Описание:");
-        JLabel description = new JLabel("<html>" + x.getDescription() + "<html/>");
+        JTextArea description = new JTextArea(x.getDescription());
+        description.setEditable(false);
+        description.setLineWrap(true);
+        description.setWrapStyleWord(true);
         add(ldescription);
         add(description);
         ldescription.setBounds(0, 50, 100, 20);
@@ -29,7 +33,8 @@ public class MessageForm extends JFrame {
 
         //КОНТАКТЫ
         JLabel lcontacts = new JLabel("Контакты:");
-        JLabel contacts = new JLabel(x.getContacts());
+        JTextArea contacts = new JTextArea(x.getContacts());
+        contacts.setEditable(false);
         add(lcontacts);
         add(contacts);
         lcontacts.setBounds(0, 175, 100, 20);
@@ -37,7 +42,8 @@ public class MessageForm extends JFrame {
 
         //ДАТА
         JLabel ldate = new JLabel("Дата (mm/dd/yyyy hh:mm):");
-        JLabel date = new JLabel(x.getDate());
+        JTextArea date = new JTextArea(x.getDate());
+        date.setEditable(false);
         add(ldate);
         add(date);
         ldate.setBounds(0, 200, 200, 20);
