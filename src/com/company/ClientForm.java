@@ -94,6 +94,8 @@ public class ClientForm extends JFrame {
                 autorizeForm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 autorizeForm.setSize(330, 100);
                 autorizeForm.setLocationRelativeTo(null);
+
+
                 dispose();
             }
         });

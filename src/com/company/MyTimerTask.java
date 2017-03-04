@@ -49,8 +49,6 @@ public class MyTimerTask extends TimerTask {
 
 
                 if (!tasks.isEmpty()) {
-
-
                     //ВЫЗОВ ФОРМЫ КЛИЕНТА
                     try {
                         ClientForm form;
@@ -79,8 +77,9 @@ public class MyTimerTask extends TimerTask {
                         Logger.getLogger(MyTimerTask.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 } else {
+                    this.cancel();
                     System.out.println("Нет задач для данного пользователя!");
-                    //Main.clientName="";
+                    Main.clientName="";
                     AutorizeForm autorizeForm = new AutorizeForm();
                     autorizeForm.setVisible(true);
                     autorizeForm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

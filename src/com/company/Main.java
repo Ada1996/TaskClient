@@ -6,6 +6,7 @@ import java.io.IOException;
 public class Main {
 
     public static String clientName = "";
+    public static boolean checkTimer = false;
 
     public static void main(String[] args) throws IOException, ClassNotFoundException {
 
