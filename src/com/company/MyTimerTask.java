@@ -34,11 +34,8 @@ public class MyTimerTask extends TimerTask {
                 connection = new Socket(InetAddress.getByName("127.0.0.1"), 180);
                 out = new DataOutputStream(connection.getOutputStream());
                 input = new ObjectInputStream(connection.getInputStream());
-
                 out.writeUTF(Main.clientName);
-                tasks = (List<Task>) input.readObject();
-
-
+                tasks = (List<Task>) input.readObject();              
 
 
 
