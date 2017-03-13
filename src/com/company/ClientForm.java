@@ -88,7 +88,6 @@ public class ClientForm extends JFrame {
                                 form1.setLocationRelativeTo(null);
                             }
                         }
-                        Thread.sleep(60000);
                     } else {
                         System.out.println("Нет задач для данного пользователя!");
                         Main.clientName = "";
