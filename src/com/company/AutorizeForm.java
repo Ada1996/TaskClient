@@ -48,29 +48,25 @@ public class AutorizeForm extends JFrame {
                     serv.Push(client.getText());
                     tasks = serv.Pop();
 
-                    if (!tasks.isEmpty()) {
-                        if (tasks.get(0).getClient().equals(""))
-                               JOptionPane.showMessageDialog(null, "Данного пользователя не существует!", "Ошибка", JOptionPane.ERROR_MESSAGE);
-                        else{
-                            Main.clientName = client.getText();
-
-                            ClientForm form;
-                            form = new ClientForm("Task Manager");
-                            form.setVisible(true);
-                            form.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                            form.setSize(650, 400);
-                            form.setLocationRelativeTo(null);
-
-
-
-                            dispose();
-                        }
-                    }
-                    else
-                    {
-                        client.setText("");
-                        JOptionPane.showMessageDialog(null, "Нет задач для данного пользователя!", "Ошибка", JOptionPane.ERROR_MESSAGE);
-                    }                   
+                     if (tasks==null)
+                     {
+                        JOptionPane.showMessageDialog(null, "Данный клиент не существует", "Ошибка", JOptionPane.ERROR_MESSAGE);
+                        AutorizeForm autorizeForm = new AutorizeForm();
+                        autorizeForm.setVisible(true);
+                        autorizeForm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                        autorizeForm.setSize(330, 100);
+                        autorizeForm.setLocationRelativeTo(null);
+                     }
+                     else {
+                                Main.clientName = client.getText();
+                                ClientForm form;
+                                form = new ClientForm("Task Manager");
+                                form.setVisible(true);
+                                form.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                                form.setSize(650, 400);
+                                form.setLocationRelativeTo(null);
+                                dispose();
+                     }                     
                 } catch (IOException ex) {
                 } catch (ClassNotFoundException ex) {
                 }               

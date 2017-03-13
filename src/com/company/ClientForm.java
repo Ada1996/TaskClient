@@ -72,34 +72,23 @@ public class ClientForm extends JFrame {
                     Calendar calendar = Calendar.getInstance();
                     SimpleDateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm");
                     String formattedDate = df.format(calendar.getTime());
-
-
-                    if (!tasks.isEmpty()) {
-                        outputTasks(tasks);
+                                       
+                    outputTasks(tasks);
 
                         //ПОИСК ЗАДАНИЯ НА ТЕКУЩЕЕ ВРЕМЯ
-                        for (Task x : tasks) {
-                            if (x.getDate().equals(formattedDate)) {
-                                Toolkit.getDefaultToolkit().beep();
-                                MessageForm form1 = new MessageForm(x);
-                                form1.setVisible(true);
-                                form1.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                                form1.setSize(320, 287);
-                                form1.setLocationRelativeTo(null);
-                            }
+                    for (Task x : tasks) {
+                        if (x.getDate().equals(formattedDate)) {
+                            Toolkit.getDefaultToolkit().beep();
+                            MessageForm form1 = new MessageForm(x);
+                            form1.setVisible(true);
+                            form1.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                            form1.setSize(320, 287);
+                            form1.setLocationRelativeTo(null);
                         }
-                    } else {
-                        System.out.println("Нет задач для данного пользователя!");
-                        Main.clientName = "";
-                        outputTasks(tasks);
-
-
-                    }
-
+                    }                   
                 } catch (UnknownHostException e) {
                 } catch (Exception e) {
                 }
-
             }
         }, 0, 60000);
 
