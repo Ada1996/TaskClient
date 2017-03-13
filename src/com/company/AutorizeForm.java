@@ -17,12 +17,6 @@ import java.util.List;
  * Created by daryo on 09.02.2017.
  */
 public class AutorizeForm extends JFrame {
-
-
-//    static private Socket connection;
-//    static private ObjectInputStream input;
-//    static private DataOutputStream out;
-
     static public List<Task> tasks;
 
 
@@ -50,12 +44,8 @@ public class AutorizeForm extends JFrame {
 
                      if (tasks==null)
                      {
-                        JOptionPane.showMessageDialog(null, "Данный клиент не существует", "Ошибка", JOptionPane.ERROR_MESSAGE);
-                        AutorizeForm autorizeForm = new AutorizeForm();
-                        autorizeForm.setVisible(true);
-                        autorizeForm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                        autorizeForm.setSize(330, 100);
-                        autorizeForm.setLocationRelativeTo(null);
+                        JOptionPane.showMessageDialog(null, "Данный пользователь не существует", "Ошибка", JOptionPane.ERROR_MESSAGE);
+                        client.setText("");
                      }
                      else {
                                 Main.clientName = client.getText();
