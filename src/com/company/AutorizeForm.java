@@ -19,10 +19,12 @@ import java.util.List;
 public class AutorizeForm extends JFrame {
 
 
-    static private Socket connection;
-    static private ObjectInputStream input;
+//    static private Socket connection;
+//    static private ObjectInputStream input;
+//    static private DataOutputStream out;
+
     static public List<Task> tasks;
-    static private DataOutputStream out;
+
 
 
     public AutorizeForm() {
@@ -41,22 +43,26 @@ public class AutorizeForm extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    connection = new Socket(InetAddress.getByName("127.0.0.1"), 180);
-                    out = new DataOutputStream(connection.getOutputStream());
-                    input = new ObjectInputStream(connection.getInputStream());
 
-                    out.writeUTF(client.getText());                  
-                    tasks = (List<Task>) input.readObject();                                       
-                
+                    Server serv = new Server();
+                    serv.Push(client.getText());
+                    tasks = serv.Pop();
+
                     if (!tasks.isEmpty()) {
                         if (tasks.get(0).getClient().equals(""))
-                               JOptionPane.showMessageDialog(null, "Данного клиента не существует!", "Ошибка", JOptionPane.ERROR_MESSAGE);                           
+                               JOptionPane.showMessageDialog(null, "Данного пользователя не существует!", "Ошибка", JOptionPane.ERROR_MESSAGE);
                         else{
                             Main.clientName = client.getText();
-                            //запуск таймера
-                            java.util.Timer mTimer = new java.util.Timer();
-                            MyTimerTask mMyTimerTask = new MyTimerTask();
-                            mTimer.schedule(mMyTimerTask, 0);
+
+                            ClientForm form;
+                            form = new ClientForm("Task Manager");
+                            form.setVisible(true);
+                            form.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                            form.setSize(650, 400);
+                            form.setLocationRelativeTo(null);
+
+
+
                             dispose();
                         }
                     }

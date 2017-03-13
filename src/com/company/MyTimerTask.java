@@ -18,17 +18,14 @@ import java.util.logging.Logger;
  */
 public class MyTimerTask extends TimerTask {
 
-
-    static private Socket connection;
-    static private ObjectInputStream input;
-    static public List<Task> tasks;
-    static private DataOutputStream out;
-
-
     @Override
     public void run() {
         for (; ; ) {
             try {
+                  Socket connection;
+                  ObjectInputStream input;
+                  List<Task> tasks;
+                  DataOutputStream out;
 
                 //ПОДКЛЮЧЕНИЕ К СЕРВЕРУ, ПОЛУЧЕНИЕ СПИСКА ЗАДАЧ
                 connection = new Socket(InetAddress.getByName("127.0.0.1"), 180);
