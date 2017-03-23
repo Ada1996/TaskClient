@@ -69,8 +69,8 @@ public class ClientForm extends JFrame {
                 try {
                     //ПОДКЛЮЧЕНИЕ К СЕРВЕРУ, ПОЛУЧЕНИЕ СПИСКА ЗАДАЧ
                     Server serv = new Server();
-                    serv.push(Main.clientName);
-                    List<Task> tasks = serv.pop();
+                    serv.sendName(Main.clientName);
+                    List<Task> tasks = serv.getTasks();
 
                     if (tasks != null) {
 
@@ -107,12 +107,9 @@ public class ClientForm extends JFrame {
                         mTimer.cancel();
                         dispose();
                     }
-
-
-                } catch (UnknownHostException e) {
-                } catch (Exception e) {
-                }
-
+                    Server.close();
+                } catch (UnknownHostException e) { System.out.println("Исключение UnknownHostException"); } 
+                catch (Exception e) {System.out.println("Исключение Exception"); }
             }
         }, 0, 60000);
 

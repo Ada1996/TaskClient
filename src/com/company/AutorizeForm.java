@@ -39,8 +39,8 @@ public class AutorizeForm extends JFrame {
                 try {
 
                     Server serv = new Server();
-                    serv.push(client.getText());
-                    tasks = serv.pop();
+                    serv.sendName(client.getText());
+                    tasks = serv.getTasks();
 
                      if (tasks==null)
                      {
@@ -56,10 +56,11 @@ public class AutorizeForm extends JFrame {
                                 form.setSize(650, 400);
                                 form.setLocationRelativeTo(null);
                                 dispose();
-                     }                     
-                } catch (IOException ex) {
-                } catch (ClassNotFoundException ex) {
-                }               
+                     }  
+                    Server.close();
+                } 
+                catch (IOException ex) {System.out.println("Исключение IOException");} 
+                catch (ClassNotFoundException ex) {System.out.println("Исключение ClassNotFoundException");}               
             }
         });
 
