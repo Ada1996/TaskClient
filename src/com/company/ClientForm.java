@@ -69,8 +69,8 @@ public class ClientForm extends JFrame {
                 try {
                     //ПОДКЛЮЧЕНИЕ К СЕРВЕРУ, ПОЛУЧЕНИЕ СПИСКА ЗАДАЧ
                     Server serv = new Server();
-                    serv.Push(Main.clientName);
-                    List<Task> tasks = serv.Pop();
+                    serv.push(Main.clientName);
+                    List<Task> tasks = serv.pop();
 
                     if (tasks != null) {
 

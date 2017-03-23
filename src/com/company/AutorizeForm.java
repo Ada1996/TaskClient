@@ -39,8 +39,8 @@ public class AutorizeForm extends JFrame {
                 try {
 
                     Server serv = new Server();
-                    serv.Push(client.getText());
-                    tasks = serv.Pop();
+                    serv.push(client.getText());
+                    tasks = serv.pop();
 
                      if (tasks==null)
                      {

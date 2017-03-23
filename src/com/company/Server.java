@@ -18,12 +18,12 @@ public class Server {
         connection = new Socket(InetAddress.getByName("127.0.0.1"), 180);
     }
 
-    public static void Push(String name) throws IOException {
+    public static void push(String name) throws IOException {
         DataOutputStream out = new DataOutputStream(connection.getOutputStream());
         out.writeUTF(name);
     }
 
-    public static List<Task> Pop() throws IOException, ClassNotFoundException {
+    public static List<Task> pop() throws IOException, ClassNotFoundException {
         ObjectInputStream input = new ObjectInputStream(connection.getInputStream());
         return (List<Task>) input.readObject();
     }
