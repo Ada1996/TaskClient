@@ -9,7 +9,7 @@ public class Main {
     public static boolean checkTimer = false;
 
     public static void main(String[] args) throws IOException, ClassNotFoundException {
-
+//jjj
         AutorizeForm autorizeForm = new AutorizeForm();
         autorizeForm.setVisible(true);
         autorizeForm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
